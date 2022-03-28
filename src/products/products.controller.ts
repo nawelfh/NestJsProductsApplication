@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Get, Post, Param, Patch } from '@nestjs/common';
+import { Body, Controller, Get, Post, Param, Patch , Delete } from '@nestjs/common';
 import { ProductService } from './products.service';
 @Controller('products')
 export class ProductController {
@@ -36,5 +36,13 @@ export class ProductController {
   ) {
       this.productService.updateProduct (prodId , prodTitle , prodDesc , prodPrice);
       return null;
+  }
+
+  @Delete(':id')
+  removeProduct (
+    @Param('id') prodId: string
+  ){
+    this.productService.deleteProduct(prodId);
+    return null;
   }
 }
